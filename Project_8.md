@@ -59,4 +59,62 @@ Add the following line of codes within the which includes the private ip for bot
 ```
 
 ![configuration file](./images/5.png)
-        
+
+Restart the apache service to register the update
+
+```bash
+sudo systemctl restart apache2
+```
+
+![Apache restarted](./images/6.png)
+
+> ```bytraffic``` balancing method will distribute incoming load between the Web Servers according to current traffic load. We can control in which proportion the traffic must be distributed by ```loadfactor``` parameter.
+
+Verify the LB Server (via public ip) is serving the tooling website in the browser.
+
+![Apache restarted](./images/7.png)
+
+Verify the log directory of both web servers are not mounted to the NFS server.
+
+```bash
+sudo umount -f /var/log/httpd/
+```
+
+![Apache restarted](./images/8.png)
+
+To see traffic distrubtion (Load balancing) in action - open log file for both web servers and refresh the LB-server serveral times.
+
+```bash
+sudo tail -f /var/log/httpd/access_log
+```
+
+``` web server 1 ```
+
+![Apache restarted](./images/9.png)
+
+``` web server 2 ```
+
+![Apache restarted](./images/10.png)
+
+> From the Logs, you can see both Web Servers are receiving the same web traffic. This is because the ``` loadfactor ``` was set to the value ``` 5 ```
+
+Optional Step – Configure Local DNS Names Resolution in the LB - Server
+
+```bash
+sudo vi /etc/hosts
+```
+
+Add the private ip address for the two web servers
+
+172.31.88.47 Web1
+172.31.95.118 Web2
+
+![Apache restarted](./images/11.png)
+
+Update this changes in the configuration file of the apache server on the LB instance.
+
+```bash
+sudo vi /etc/apache2/sites-available/000-default.conf
+```
+
+![Apache restarted](./images/12.png)
