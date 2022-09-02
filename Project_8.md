@@ -118,3 +118,10 @@ sudo vi /etc/apache2/sites-available/000-default.conf
 ```
 
 ![Apache restarted](./images/12.png)
+
+Use Curl verfiy that LB-server can acces web servers the local dns ``` Web1 Web2 ```
+
+```bash
+curl http://Web1
+```
+![Apache restarted](./images/13.png)
