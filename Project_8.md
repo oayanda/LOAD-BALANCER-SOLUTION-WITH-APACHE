@@ -33,7 +33,7 @@ sudo systemctl restart apache2
 
 ![servera](./images/4.png)
 
-Configure load balancing configure it to point traffic coming to LB to both Web Servers
+Configure load balancing  - configuring the LB-Server enables it to efficiently manage the distribution of incoming traffic to best available Web Server *( for this setup, traffic is distributed evenly - ```loadfactor=5```)*
 
 Let's edit the Apache configuration file to register the two web servers
 
@@ -41,7 +41,7 @@ Let's edit the Apache configuration file to register the two web servers
 sudo vi /etc/apache2/sites-available/000-default.conf
 ```
 
-Add the following line of codes within the which includes the private ip for both web servers```<vitualhist tags>```
+Add the following line of codes within ```<vitualhist tags>``` tags the file. This includes the private ip for both web servers
 
 ```bash
 
@@ -124,4 +124,5 @@ Use Curl verfiy that LB-server can acces web servers the local dns ``` Web1 Web2
 ```bash
 curl http://Web1
 ```
+
 ![Apache restarted](./images/13.png)
