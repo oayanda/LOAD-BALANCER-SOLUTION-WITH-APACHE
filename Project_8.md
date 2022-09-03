@@ -33,7 +33,7 @@ sudo systemctl restart apache2
 
 ![servera](./images/4.png)
 
-Configure load balancing  - configuring the LB-Server enables it to efficiently manage the distribution of incoming traffic to best available Web Server *( for this setup, traffic is distributed evenly - ```loadfactor=5```)*
+Configure load balancing  - configuring the LB-Server enables it to efficiently manage the distribution of incoming traffic to the best available Web Server *( for this setup, traffic is distributed evenly - ```loadfactor=5```)*
 
 Let's edit the Apache configuration file to register the two web servers
 
@@ -68,7 +68,7 @@ sudo systemctl restart apache2
 
 ![Apache restarted](./images/6.png)
 
-> ```bytraffic``` balancing method will distribute incoming load between the Web Servers according to current traffic load. We can control in which proportion the traffic must be distributed by ```loadfactor``` parameter.
+> ```bytraffic``` balancing method will distribute incoming load between the Web Servers according to current traffic load. I have controlled which proportion of the traffic must be distributed by using the ```loadfactor``` parameter.
 
 Verify the LB Server (via public ip) is serving the tooling website in the browser.
 
@@ -96,7 +96,7 @@ sudo tail -f /var/log/httpd/access_log
 
 ![Apache restarted](./images/10.png)
 
-> From the Logs, you can see both Web Servers are receiving the same web traffic. This is because the ``` loadfactor ``` was set to the value ``` 5 ```
+> From the Logs, you can see both Web Servers are receiving the same load of web traffic. This is because the ``` loadfactor ``` was set to the value ``` 5 ```
 
 Optional Step – Configure Local DNS Names Resolution in the LB - Server
 
